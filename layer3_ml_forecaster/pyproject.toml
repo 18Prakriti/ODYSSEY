@@ -1,0 +1,2 @@
+[tool.vercel]
+entrypoint = "layer3_ml_forecaster/server.py"
