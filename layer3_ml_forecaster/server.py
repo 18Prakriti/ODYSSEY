@@ -30,14 +30,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from src.predict import (
-    load_model_bundle,
-    predict_single,
-    fetch_active_telemetry_from_db,
-    generate_mock_active_fleet,
-)
-from src.train import train_model, MODEL_PATH
-
+try:
+    from layer3_ml_forecaster.predict import (
+        predict_eta,
+        load_model,
+    )
+except ModuleNotFoundError:
+    from predict import (
+        predict_eta,
+        load_model,
+    )
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
